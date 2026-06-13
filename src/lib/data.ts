@@ -6,7 +6,6 @@ export const profile = {
   tagline:
     "I care about making LLMs trustworthy: evaluating their fairness and reliability, putting them to work in healthcare, and understanding the algorithms underneath.",
   email: "mokshitsurana3110@gmail.com",
-  phone: "+1 (331) 269-4898",
   links: {
     email: "mailto:mokshitsurana3110@gmail.com",
     linkedin: "https://www.linkedin.com/in/MokshitSurana/",
@@ -78,6 +77,8 @@ export type Project = {
   description: string;
   stack: string[];
   href?: string;
+  demo?: string;
+  image?: { src: string; width: number; height: number };
   status?: string;
 };
 
@@ -89,6 +90,8 @@ export const projects: Project[] = [
       "Five specialized agents orchestrated by a LangGraph supervisor monitor 10+ feeds and emit evidence backed action tickets. A DeltaRAG layer fuses dense vector search with a NetworkX knowledge graph via Reciprocal Rank Fusion, reaching 0.93 MRR and 88% P@1 on a 100 query benchmark.",
     stack: ["LangGraph", "LangChain", "ChromaDB", "pgvector", "Next.js"],
     href: "https://github.com/MokshitSurana/ECI-Pipeline",
+    demo: "https://eci-pipeline.vercel.app/",
+    image: { src: "/projects/eci.png", width: 1440, height: 900 },
   },
   {
     title: "FairGuard",
@@ -97,6 +100,7 @@ export const projects: Project[] = [
       "Built for the Northwestern GAIN challenge, an agentic system of 9 composable skills analyzes 1M+ federal lobbying records to surface structural conflicts of interest. It pairs high accuracy entity resolution (F1 0.963) and §207 cooling off analysis with an interactive force directed conflict graph in a Next.js reporter UI.",
     stack: ["Python", "DuckDB", "Polars", "NetworkX", "D3.js", "Next.js"],
     href: "https://github.com/MokshitSurana/northwestern-challenge",
+    image: { src: "/projects/fairguard.png", width: 1600, height: 1420 },
   },
   {
     title: "Keya · Real Estate AI Assistant",
@@ -105,13 +109,16 @@ export const projects: Project[] = [
       "A conversational platform for property search by zip code, market trends, and neighborhood insights, using hybrid LLM and regex intent extraction. Full stack build with a Next.js frontend and Flask backend, multilingual real time translation, and location aware responses over Zillow, SerpAPI, and GreatSchools data.",
     stack: ["Next.js", "Flask", "Azure OpenAI", "LangChain", "TypeScript"],
     href: "https://github.com/Archit1706/Keya-Agentic-AI-assistant-for-Real-Estate",
+    demo: "https://keya-ai.vercel.app/",
+    image: { src: "/projects/keya.png", width: 1440, height: 900 },
   },
   {
     title: "Neural Networks from Scratch",
     blurb: "Building the fundamentals by hand. No autograd, no shortcuts.",
     description:
-      "Implementing the core deep learning building blocks from first principles: forward and backward passes, manual backpropagation, and optimizers, without relying on autograd frameworks. A deliberate exercise to internalize the math behind modern architectures. Repo coming soon.",
+      "A modular neural network library in pure NumPy — swappable activations, initializers, losses, and optimizers (SGD, momentum, RMSProp, Adam), with every analytic gradient verified against numerical differentiation. Reaches 95.6% test accuracy on the breast cancer dataset; CNNs and RNNs are on the roadmap.",
     stack: ["Python", "NumPy", "Backprop", "Optimizers"],
+    href: "https://github.com/MokshitSurana/Neural-Networks-from-scratch",
     status: "In progress",
   },
   {

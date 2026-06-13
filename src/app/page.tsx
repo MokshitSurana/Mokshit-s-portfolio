@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Atmosphere from "@/components/Atmosphere";
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
@@ -11,6 +12,39 @@ import {
   education,
   awards,
 } from "@/lib/data";
+import { siteUrl } from "@/lib/site";
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  email: profile.email,
+  url: siteUrl,
+  sameAs: [
+    profile.links.linkedin,
+    profile.links.github,
+    profile.links.scholar,
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Chicago",
+    addressRegion: "IL",
+    addressCountry: "US",
+  },
+  alumniOf: education.map((ed) => ({
+    "@type": "CollegeOrUniversity",
+    name: ed.school,
+  })),
+  knowsAbout: [
+    "Machine Learning",
+    "Large Language Models",
+    "LLM Evaluation",
+    "Retrieval-Augmented Generation",
+    "Healthcare AI",
+    "Natural Language Processing",
+  ],
+};
 
 function SectionLabel({ index, title }: { index: string; title: string }) {
   return (
@@ -29,11 +63,18 @@ const container = "mx-auto w-full max-w-6xl px-6 sm:px-10";
 export default function Home() {
   return (
     <main id="top" className="relative z-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <Atmosphere />
       <Nav />
 
       {/* HERO */}
       <section
+        id="intro"
         className={`${container} relative flex min-h-screen flex-col justify-center pt-24`}
       >
         <Reveal>
@@ -300,9 +341,9 @@ export default function Home() {
       {/* CONTACT */}
       <section id="contact" className={`${container} scroll-mt-24 py-32`}>
         <Reveal>
-          <p className="mono text-xs uppercase tracking-[0.3em] text-muted sm:text-sm">
+          <h2 className="mono text-xs uppercase tracking-[0.3em] text-muted sm:text-sm">
             06 / Contact
-          </p>
+          </h2>
         </Reveal>
         <Reveal delay={80}>
           <a
@@ -322,7 +363,7 @@ export default function Home() {
             <SocialLink href={profile.links.scholar} label="Scholar" />
           </div>
           <p className="mono mt-7 text-sm tracking-wider text-muted">
-            {profile.email} · {profile.phone}
+            {profile.email}
           </p>
         </Reveal>
       </section>
@@ -351,20 +392,31 @@ function ProjectRow({
   proj: (typeof projects)[number];
   index: number;
 }) {
-  const inner = (
+  const primary = proj.demo ?? proj.href;
+
+  return (
     <article className="group grid gap-6 border-t border-line py-10 transition-colors hover:border-accent/30 md:grid-cols-12 md:gap-8">
       <div className="mono text-sm text-accent md:col-span-1">
         {String(index).padStart(2, "0")}
       </div>
 
       <div className="md:col-span-7">
-        <h3 className="flex items-center gap-2 text-2xl font-medium tracking-tight sm:text-3xl">
-          {proj.title}
-          {proj.href ? (
-            <span className="mono text-base text-muted transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent">
-              ↗
-            </span>
-          ) : null}
+        <h3 className="text-2xl font-medium tracking-tight sm:text-3xl">
+          {primary ? (
+            <a
+              href={primary}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 transition-colors hover:text-accent"
+            >
+              {proj.title}
+              <span className="mono text-base text-muted transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent">
+                ↗
+              </span>
+            </a>
+          ) : (
+            proj.title
+          )}
         </h3>
         <p className="mt-2 text-base text-muted">{proj.blurb}</p>
         <p className="mt-5 max-w-2xl leading-relaxed text-foreground/70">
@@ -378,6 +430,12 @@ function ProjectRow({
             {proj.status}
           </span>
         ) : null}
+        {(proj.demo || proj.href) && (
+          <div className="flex flex-wrap gap-2 md:justify-end">
+            {proj.demo && <ProjectLink href={proj.demo} label="Live demo" accent />}
+            {proj.href && <ProjectLink href={proj.href} label="Code" />}
+          </div>
+        )}
         <div className="flex flex-wrap gap-2 md:justify-end">
           {proj.stack.map((t) => (
             <span
@@ -389,20 +447,53 @@ function ProjectRow({
           ))}
         </div>
       </div>
+
+      {proj.image && (
+        <div className="md:col-span-11 md:col-start-2">
+          <a
+            href={primary}
+            target="_blank"
+            rel="noreferrer"
+            className="block overflow-hidden rounded-xl border border-line transition-colors hover:border-accent/40"
+          >
+            <Image
+              src={proj.image.src}
+              alt={`Screenshot of ${proj.title}`}
+              width={proj.image.width}
+              height={proj.image.height}
+              sizes="(min-width: 1152px) 1056px, 100vw"
+              className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.01]"
+            />
+          </a>
+        </div>
+      )}
     </article>
   );
+}
 
-  return proj.href ? (
+function ProjectLink({
+  href,
+  label,
+  accent = false,
+}: {
+  href: string;
+  label: string;
+  accent?: boolean;
+}) {
+  return (
     <a
-      href={proj.href}
+      href={href}
       target="_blank"
       rel="noreferrer"
-      className="block"
+      className={`mono inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] uppercase tracking-wider transition-colors ${
+        accent
+          ? "border-accent/40 text-accent hover:border-accent"
+          : "border-line text-foreground/80 hover:border-accent hover:text-accent"
+      }`}
     >
-      {inner}
+      {label}
+      <span aria-hidden>↗</span>
     </a>
-  ) : (
-    inner
   );
 }
 

@@ -14,11 +14,16 @@ const sections = [
 ];
 
 export default function Nav() {
-  const [active, setActive] = useState("about");
+  const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      // no section highlighted while still in the hero
+      if (window.scrollY < window.innerHeight * 0.4) setActive("");
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -44,7 +49,7 @@ export default function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
-        scrolled
+        scrolled || open
           ? "border-b border-line bg-background/70 backdrop-blur-md"
           : "border-b border-transparent"
       }`}
@@ -78,12 +83,58 @@ export default function Nav() {
           <ThemeToggle />
           <a
             href={profile.links.email}
-            className="mono rounded-full border border-line px-4 py-1.5 text-xs uppercase tracking-wider text-foreground transition-colors hover:border-accent hover:text-accent"
+            className="mono hidden rounded-full border border-line px-4 py-1.5 text-xs uppercase tracking-wider text-foreground transition-colors hover:border-accent hover:text-accent sm:inline-block"
           >
             Get in touch
           </a>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-foreground/80 transition-colors hover:border-accent hover:text-accent md:hidden"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              aria-hidden
+            >
+              {open ? (
+                <path d="M6 6l12 12M18 6L6 18" />
+              ) : (
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              )}
+            </svg>
+          </button>
         </div>
       </nav>
+
+      {open && (
+        <nav className="border-t border-line md:hidden">
+          <ul className="mx-auto max-w-5xl px-6 py-4">
+            {sections.map((s) => (
+              <li key={s.id}>
+                <a
+                  href={`#${s.id}`}
+                  onClick={() => setOpen(false)}
+                  className={`mono block py-2.5 text-sm uppercase tracking-wider transition-colors ${
+                    active === s.id
+                      ? "text-accent"
+                      : "text-muted hover:text-foreground"
+                  }`}
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }

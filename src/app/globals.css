@@ -115,24 +115,6 @@ h5,
   transform: scaleX(1);
 }
 
-/* ---- marquee ---- */
-.marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-.marquee:hover {
-  animation-play-state: paused;
-}
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -146,9 +128,6 @@ h5,
   .wipe::after {
     transform: scaleX(1);
     transition: none;
-  }
-  .marquee {
-    animation: none;
   }
 }
 

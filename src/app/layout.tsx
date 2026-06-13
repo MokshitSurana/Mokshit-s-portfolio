@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
+import { siteUrl } from "@/lib/site";
 
 const display = Space_Grotesk({
   variable: "--font-display",
@@ -20,16 +21,13 @@ const mono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000");
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: `${profile.name} · ${profile.role}`,
   description: profile.tagline,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: `${profile.name} · ${profile.role}`,
     description: profile.tagline,
@@ -61,7 +59,15 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="grain min-h-full">{children}</body>
+      <body className="grain min-h-full">
+        <a
+          href="#intro"
+          className="mono sr-only text-xs uppercase tracking-wider focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-background"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
