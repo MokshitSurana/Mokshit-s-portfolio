@@ -23,7 +23,7 @@ const structuredData = {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: `${profile.name} — ${profile.role}`,
+      name: `${profile.name} · ${profile.role}`,
       inLanguage: "en-US",
       publisher: { "@id": personId },
       about: { "@id": personId },
@@ -135,7 +135,7 @@ export default function Home() {
         </Reveal>
         <Reveal delay={220}>
           <p className="serif mt-8 max-w-2xl text-2xl italic leading-snug text-foreground sm:text-3xl">
-            I don&rsquo;t take model outputs at face value — I measure them.
+            I don&rsquo;t take model outputs at face value. I measure them.
           </p>
         </Reveal>
         <Reveal delay={300}>

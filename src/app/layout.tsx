@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: `%s · ${profile.name}`,
   },
   description: profile.tagline,
-  applicationName: `${profile.name} — Portfolio`,
+  applicationName: `${profile.name} Portfolio`,
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
   publisher: profile.name,

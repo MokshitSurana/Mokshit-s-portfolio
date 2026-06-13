@@ -116,7 +116,7 @@ export const projects: Project[] = [
     title: "Neural Networks from Scratch",
     blurb: "Building the fundamentals by hand. No autograd, no shortcuts.",
     description:
-      "A modular neural network library in pure NumPy — swappable activations, initializers, losses, and optimizers (SGD, momentum, RMSProp, Adam), with every analytic gradient verified against numerical differentiation. Reaches 95.6% test accuracy on the breast cancer dataset; CNNs and RNNs are on the roadmap.",
+      "A modular neural network library in pure NumPy, with swappable activations, initializers, losses, and optimizers (SGD, momentum, RMSProp, Adam), and every analytic gradient verified against numerical differentiation. Reaches 95.6% test accuracy on the breast cancer dataset; CNNs and RNNs are on the roadmap.",
     stack: ["Python", "NumPy", "Backprop", "Optimizers"],
     href: "https://github.com/MokshitSurana/Neural-Networks-from-scratch",
     status: "In progress",
