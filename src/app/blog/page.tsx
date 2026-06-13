@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts, formatDate } from "@/lib/blog";
 import { profile } from "@/lib/data";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Writing",
@@ -17,12 +18,15 @@ export default function BlogIndex() {
   return (
     <main className="relative z-10 min-h-screen pb-28 pt-28">
       <div className={container}>
-        <Link
-          href="/"
-          className="mono text-xs uppercase tracking-wider text-muted transition-colors hover:text-accent"
-        >
-          ← {profile.name}
-        </Link>
+        <div className="flex items-center justify-between gap-4">
+          <Link
+            href="/"
+            className="mono text-xs uppercase tracking-wider text-muted transition-colors hover:text-accent"
+          >
+            ← {profile.name}
+          </Link>
+          <ThemeToggle />
+        </div>
 
         <header className="mt-10 border-b border-line pb-10">
           <p className="mono text-xs uppercase tracking-[0.3em] text-accent sm:text-sm">

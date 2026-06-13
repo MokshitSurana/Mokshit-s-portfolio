@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getAllPosts, getPostBySlug, formatDate } from "@/lib/blog";
 import { profile } from "@/lib/data";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const container = "mx-auto w-full max-w-[52rem] px-6 sm:px-10";
 
@@ -61,12 +62,15 @@ export default async function BlogPost({
         }}
       />
       <div className={container}>
-        <Link
-          href="/blog"
-          className="mono text-xs uppercase tracking-wider text-muted transition-colors hover:text-accent"
-        >
-          ← Writing
-        </Link>
+        <div className="flex items-center justify-between gap-4">
+          <Link
+            href="/blog"
+            className="mono text-xs uppercase tracking-wider text-muted transition-colors hover:text-accent"
+          >
+            ← Writing
+          </Link>
+          <ThemeToggle />
+        </div>
 
         <header className="mt-10 border-b border-line pb-10">
           <p className="mono text-xs tracking-wider text-muted">
