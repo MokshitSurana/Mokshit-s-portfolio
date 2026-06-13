@@ -2,6 +2,7 @@ import Image from "next/image";
 import Atmosphere from "@/components/Atmosphere";
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
+import SignalField from "@/components/SignalField";
 import {
   profile,
   about,
@@ -109,8 +110,9 @@ export default function Home() {
       {/* HERO */}
       <section
         id="intro"
-        className={`${container} relative flex min-h-screen flex-col justify-center pt-24`}
+        className={`${container} relative isolate flex min-h-screen flex-col justify-center pt-24`}
       >
+        <SignalField />
         <Reveal>
           <p className="mono mb-7 text-xs uppercase tracking-[0.3em] text-muted sm:text-sm">
             {profile.location} · {profile.status}
