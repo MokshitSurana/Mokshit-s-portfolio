@@ -63,14 +63,31 @@ const structuredData = {
   ],
 };
 
-function SectionLabel({ index, title }: { index: string; title: string }) {
+function SectionLabel({
+  index,
+  title,
+  note,
+}: {
+  index: string;
+  title: string;
+  note?: string;
+}) {
   return (
     <div className="mb-12 flex items-baseline gap-4">
       <span className="mono text-xs text-accent sm:text-sm">{index}</span>
-      <h2 className="wipe text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-        {title}
-      </h2>
-      <span className="h-px flex-1 translate-y-[-4px] bg-line" />
+      <div className="flex-1">
+        <div className="flex items-baseline gap-4">
+          <h2 className="serif wipe text-4xl font-medium tracking-tight sm:text-5xl md:text-6xl">
+            {title}
+          </h2>
+          <span className="h-px flex-1 translate-y-[-4px] bg-line" />
+        </div>
+        {note ? (
+          <p className="serif mt-3 text-lg italic text-muted sm:text-xl">
+            {note}
+          </p>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -102,12 +119,12 @@ export default function Home() {
         <Reveal delay={80}>
           <h1
             aria-label={profile.name}
-            className="text-6xl font-bold leading-[0.92] tracking-tight sm:text-8xl md:text-[8.5rem]"
+            className="serif text-6xl font-medium leading-[0.92] tracking-tight sm:text-8xl md:text-[8.5rem]"
           >
             <span aria-hidden>
               {profile.name.split(" ")[0]}
               <br />
-              <span className="text-muted">{profile.name.split(" ")[1]}</span>
+              <em className="text-muted">{profile.name.split(" ")[1]}</em>
             </span>
           </h1>
         </Reveal>
@@ -116,12 +133,17 @@ export default function Home() {
             {profile.role}
           </p>
         </Reveal>
-        <Reveal delay={240}>
-          <p className="mt-8 max-w-2xl text-xl leading-relaxed text-foreground/85 sm:text-2xl">
+        <Reveal delay={220}>
+          <p className="serif mt-8 max-w-2xl text-2xl italic leading-snug text-foreground sm:text-3xl">
+            I don&rsquo;t take model outputs at face value — I measure them.
+          </p>
+        </Reveal>
+        <Reveal delay={300}>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-foreground/70 sm:text-xl">
             {profile.tagline}
           </p>
         </Reveal>
-        <Reveal delay={320}>
+        <Reveal delay={380}>
           <div className="mt-11 flex flex-wrap items-center gap-3">
             <a
               href="/Mokshit-Surana-Resume.pdf"
@@ -149,7 +171,7 @@ export default function Home() {
       {/* ABOUT */}
       <section id="about" className={`${container} scroll-mt-24 py-28`}>
         <Reveal>
-          <SectionLabel index="01" title="About" />
+          <SectionLabel index="01" title="About" note="what I optimize for" />
         </Reveal>
         <div className="grid gap-14 md:grid-cols-[1.4fr_1fr]">
           <div>
@@ -189,7 +211,11 @@ export default function Home() {
       {/* EXPERIENCE */}
       <section id="work" className={`${container} scroll-mt-24 py-28`}>
         <Reveal>
-          <SectionLabel index="02" title="Experience" />
+          <SectionLabel
+            index="02"
+            title="Experience"
+            note="from research lab to production"
+          />
         </Reveal>
         <div>
           {experience.map((job, i) => (
@@ -229,7 +255,11 @@ export default function Home() {
       {/* PROJECTS */}
       <section id="projects" className={`${container} scroll-mt-24 py-28`}>
         <Reveal>
-          <SectionLabel index="03" title="Selected Projects" />
+          <SectionLabel
+            index="03"
+            title="Selected Projects"
+            note="evidence over claims"
+          />
         </Reveal>
         <div>
           {projects.map((proj, i) => (
@@ -243,7 +273,11 @@ export default function Home() {
       {/* RESEARCH */}
       <section id="research" className={`${container} scroll-mt-24 py-28`}>
         <Reveal>
-          <SectionLabel index="04" title="Research & Publications" />
+          <SectionLabel
+            index="04"
+            title="Research & Publications"
+            note="the peer-reviewed record"
+          />
         </Reveal>
         <div>
           {publications.map((pub, i) => {
@@ -286,7 +320,11 @@ export default function Home() {
       {/* STACK + BACKGROUND */}
       <section id="stack" className={`${container} scroll-mt-24 py-28`}>
         <Reveal>
-          <SectionLabel index="05" title="Stack & Background" />
+          <SectionLabel
+            index="05"
+            title="Stack & Background"
+            note="the instruments"
+          />
         </Reveal>
         <div className="grid gap-14 md:grid-cols-2">
           <div className="space-y-7">
@@ -370,11 +408,11 @@ export default function Home() {
         <Reveal delay={80}>
           <a
             href={profile.links.email}
-            className="mt-7 inline-block text-5xl font-bold tracking-tight transition-colors hover:text-accent sm:text-7xl md:text-8xl"
+            className="serif mt-7 inline-block text-5xl font-medium tracking-tight transition-colors hover:text-accent sm:text-7xl md:text-8xl"
           >
             Let&rsquo;s build
             <br />
-            something.
+            <em>something.</em>
           </a>
         </Reveal>
         <Reveal delay={160}>
