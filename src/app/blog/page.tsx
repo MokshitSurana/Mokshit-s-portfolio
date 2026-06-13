@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
-const container = "mx-auto w-full max-w-3xl px-6 sm:px-10";
+const container = "mx-auto w-full max-w-[52rem] px-6 sm:px-10";
 
 export default function BlogIndex() {
   const posts = getAllPosts();

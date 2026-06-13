@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import { getAllPosts, getPostBySlug, formatDate } from "@/lib/blog";
 import { profile } from "@/lib/data";
 
-const container = "mx-auto w-full max-w-3xl px-6 sm:px-10";
+const container = "mx-auto w-full max-w-[52rem] px-6 sm:px-10";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
