@@ -1,0 +1,56 @@
+<svg viewBox="0 0 760 792" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title>Neural networks from scratch: series roadmap</title>
+  <desc>A five-phase roadmap. Foundations, then backpropagation, then training techniques, then sequence models, then transformers, leading to today's LLMs. CNNs are an optional separate branch.</desc>
+
+  <rect x="2" y="2" width="756" height="788" rx="18" fill="#0c0c11" stroke="rgba(255,255,255,0.08)"/>
+
+  <text x="40" y="54" font-family="ui-monospace, monospace" font-size="12" letter-spacing="3" fill="#c6f24e">THE ROADMAP</text>
+  <text x="40" y="88" font-size="23" font-weight="600" fill="#ededed">Where this series is headed</text>
+
+  <line x1="72" y1="150" x2="72" y2="664" stroke="#c6f24e" stroke-opacity="0.28" stroke-width="2"/>
+
+  <circle cx="72" cy="168" r="16" fill="#0c0c11" stroke="#c6f24e" stroke-width="2"/>
+  <text x="72" y="172" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#c6f24e">01</text>
+  <line x1="88" y1="168" x2="108" y2="168" stroke="#c6f24e" stroke-opacity="0.4" stroke-width="2"/>
+  <rect x="108" y="129" width="616" height="78" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)"/>
+  <text x="130" y="162" font-size="16.5" font-weight="600" fill="#ededed">Foundations</text>
+  <text x="130" y="186" font-size="12.5" fill="#9a9aa3">Perceptron · MLP &amp; notation · forward propagation · loss functions</text>
+
+  <circle cx="72" cy="270" r="16" fill="#0c0c11" stroke="#c6f24e" stroke-width="2"/>
+  <text x="72" y="274" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#c6f24e">02</text>
+  <line x1="88" y1="270" x2="108" y2="270" stroke="#c6f24e" stroke-opacity="0.4" stroke-width="2"/>
+  <rect x="108" y="231" width="616" height="78" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)"/>
+  <text x="130" y="264" font-size="16.5" font-weight="600" fill="#ededed">Backpropagation <tspan fill="#c6f24e" font-size="12" font-family="ui-monospace, monospace">· the deep dive</tspan></text>
+  <text x="130" y="288" font-size="12.5" fill="#9a9aa3">Derivatives, gradients &amp; intuition, worked by hand for a 4-layer network</text>
+
+  <circle cx="72" cy="372" r="16" fill="#0c0c11" stroke="#c6f24e" stroke-width="2"/>
+  <text x="72" y="376" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#c6f24e">03</text>
+  <line x1="88" y1="372" x2="108" y2="372" stroke="#c6f24e" stroke-opacity="0.4" stroke-width="2"/>
+  <rect x="108" y="333" width="616" height="78" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)"/>
+  <text x="130" y="366" font-size="16.5" font-weight="600" fill="#ededed">Training a network that works</text>
+  <text x="130" y="390" font-size="12.5" fill="#9a9aa3">Vanishing gradients · dropout · regularization · activations · batchnorm · optimizers</text>
+
+  <circle cx="72" cy="474" r="16" fill="#0c0c11" stroke="#c6f24e" stroke-width="2"/>
+  <text x="72" y="478" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#c6f24e">04</text>
+  <line x1="88" y1="474" x2="108" y2="474" stroke="#c6f24e" stroke-opacity="0.4" stroke-width="2"/>
+  <rect x="108" y="435" width="616" height="78" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)"/>
+  <text x="130" y="468" font-size="16.5" font-weight="600" fill="#ededed">Sequence models</text>
+  <text x="130" y="492" font-size="12.5" fill="#9a9aa3">RNNs · LSTMs &amp; GRUs · encoder-decoder · attention (Bahdanau, Luong)</text>
+
+  <circle cx="72" cy="576" r="16" fill="#0c0c11" stroke="#c6f24e" stroke-width="2"/>
+  <text x="72" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#c6f24e">05</text>
+  <line x1="88" y1="576" x2="108" y2="576" stroke="#c6f24e" stroke-opacity="0.4" stroke-width="2"/>
+  <rect x="108" y="537" width="616" height="78" rx="12" fill="rgba(198,242,78,0.06)" stroke="rgba(198,242,78,0.30)"/>
+  <text x="130" y="570" font-size="16.5" font-weight="600" fill="#ededed">Transformers</text>
+  <text x="130" y="594" font-size="12.5" fill="#9a9aa3">Self-attention &amp; multi-head attention — the architecture behind today's LLMs</text>
+
+  <circle cx="72" cy="664" r="6" fill="#c6f24e"/>
+  <line x1="78" y1="664" x2="108" y2="664" stroke="#c6f24e" stroke-opacity="0.5" stroke-width="2"/>
+  <rect x="108" y="647" width="150" height="34" rx="17" fill="#c6f24e"/>
+  <text x="183" y="669" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#0c0c11">TODAY'S LLMs</text>
+
+  <path d="M72 670 L72 730 L108 730" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <rect x="108" y="704" width="616" height="52" rx="12" fill="none" stroke="rgba(255,255,255,0.14)" stroke-dasharray="4 4"/>
+  <text x="130" y="727" font-size="13" font-weight="600" fill="#bdbdc4">Maybe later</text>
+  <text x="130" y="745" font-size="12" fill="#7e7e86">CNNs are their own branch · more topics still to be decided</text>
+</svg>

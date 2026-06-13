@@ -15,6 +15,60 @@ There are already a ton of resources out there, videos, blogs, and articles, and
 
 One heads-up before we begin: a few of these concepts are genuinely hard, and you probably won't understand them on the first read. That's completely normal. My recommendation is to read the article again and give yourself some time to sit with the idea. The researchers who came up with these things spent years on them, so it's unrealistic to expect to absorb everything in one go. We all learn at different speeds. Be patient with yourself.
 
+Here's the rough order of what we'll cover. I'll keep this updated as the series takes shape.
+
+![Roadmap of the neural networks series: foundations, backpropagation, training techniques, sequence models, and transformers, leading to today's LLMs.](/blog/roadmap.svg)
+
+## The foundations
+
+- The perceptron: what it is, the perceptron trick, and where it falls short
+- The multi-layer perceptron, and the notation we'll use throughout
+- Forward propagation
+- Loss functions
+
+## Backpropagation (the part we'll slow down for)
+
+This is where we go deep and work through the derivatives for a four-layer network by hand. Along the way:
+
+- What a derivative actually is, and how it helps us minimize the loss
+- What a gradient is
+- The intuition behind backpropagation (and stochastic gradient descent)
+- Convergence, and how an MLP reuses its forward-pass values during backprop (memoization)
+
+## Training a network that actually works
+
+- Vanishing gradients
+- Gradient descent and its variants (batch, stochastic, and mini-batch)
+- How to improve the performance of a network
+- Overfitting
+- Dropout
+- Regularization (L1 and L2)
+- Activation functions
+- Weight initialization techniques
+- Batch normalization
+- Optimizers (SGD, momentum, RMSProp, AdaDelta, AdaGrad, and Adam)
+
+## Sequence models
+
+After that, we shift to recurrent architectures.
+
+- RNNs, then LSTMs and GRUs
+- Backpropagation through time
+- Understanding the architectures: the how and the why
+- The different types of RNNs
+- Why plain RNNs struggle, and how LSTMs and GRUs fix it
+- Deep RNNs, LSTMs, and GRUs
+- Bidirectional RNNs, LSTMs, and GRUs
+
+I'm hoping to write the code for these by hand too, though I haven't decided yet whether that's necessary.
+
+## Toward transformers
+
+- Encoder-decoder models
+- Attention (Bahdanau and Luong)
+
+That's roughly as far as I've mapped out in detail so far. After attention, we'll get into transformers, including self-attention and multi-head attention, which make up the architecture behind today's LLMs. I'm still undecided on CNNs, since they're really their own branch of the field, and there's more I'll figure out as we go.
+
 A couple of things I'll do in every post:
 
 - Link the resources that actually helped me when I was learning the topic.
