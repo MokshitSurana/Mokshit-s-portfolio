@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#07070a"/>
+  <text x="50%" y="52%" dy="0.02em" text-anchor="middle" dominant-baseline="middle"
+    font-family="'Space Grotesk', 'Segoe UI', system-ui, sans-serif" font-size="30" font-weight="700"
+    fill="#ededed">MS<tspan fill="#c6f24e">.</tspan></text>
+</svg>
