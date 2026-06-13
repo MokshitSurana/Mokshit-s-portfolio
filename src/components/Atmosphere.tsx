@@ -20,10 +20,15 @@ export default function Atmosphere() {
     let x = targetX;
     let y = targetY;
     let raf = 0;
+    let running = false;
 
     const onMove = (e: MouseEvent) => {
       targetX = e.clientX;
       targetY = e.clientY;
+      if (!running) {
+        running = true;
+        raf = requestAnimationFrame(tick);
+      }
     };
 
     const onScroll = () => {
@@ -41,12 +46,18 @@ export default function Atmosphere() {
           y - 300
         }px, 0)`;
       }
+      // Stop the loop once the glow has settled; onMove restarts it.
+      if (Math.abs(targetX - x) < 0.5 && Math.abs(targetY - y) < 0.5) {
+        running = false;
+        return;
+      }
       raf = requestAnimationFrame(tick);
     };
 
     if (!reduce) {
       window.addEventListener("mousemove", onMove, { passive: true });
-      raf = requestAnimationFrame(tick);
+      // Position once on mount; the loop only runs while the cursor moves.
+      tick();
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
