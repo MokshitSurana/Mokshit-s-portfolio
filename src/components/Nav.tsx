@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { profile } from "@/lib/data";
 import ThemeToggle from "./ThemeToggle";
 
-const sections = [
+const sections: { id: string; label: string; href?: string }[] = [
   { id: "about", label: "About" },
   { id: "work", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "research", label: "Research" },
+  { id: "blog", label: "Writing", href: "/blog" },
   { id: "stack", label: "Stack" },
   { id: "contact", label: "Contact" },
 ];
@@ -66,7 +67,7 @@ export default function Nav() {
           {sections.map((s) => (
             <li key={s.id}>
               <a
-                href={`#${s.id}`}
+                href={s.href ?? `#${s.id}`}
                 className={`mono rounded-full px-3 py-1.5 text-xs uppercase tracking-wider transition-colors ${
                   active === s.id
                     ? "text-accent"
@@ -120,7 +121,7 @@ export default function Nav() {
             {sections.map((s) => (
               <li key={s.id}>
                 <a
-                  href={`#${s.id}`}
+                  href={s.href ?? `#${s.id}`}
                   onClick={() => setOpen(false)}
                   className={`mono block py-2.5 text-sm uppercase tracking-wider transition-colors ${
                     active === s.id
