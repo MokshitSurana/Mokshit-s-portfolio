@@ -23,22 +23,45 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: `${profile.name} · ${profile.role}`,
+  title: {
+    default: `${profile.name} · ${profile.role}`,
+    template: `%s · ${profile.name}`,
+  },
   description: profile.tagline,
+  applicationName: `${profile.name} — Portfolio`,
+  authors: [{ name: profile.name, url: siteUrl }],
+  creator: profile.name,
+  publisher: profile.name,
+  keywords: [
+    profile.name,
+    "Mokshit Surana portfolio",
+    "ML Engineer",
+    "AI Engineer",
+    "Machine Learning Engineer",
+    "LLM evaluation",
+    "Healthcare AI",
+    "University of Illinois Chicago",
+  ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: `${profile.name} · ${profile.role}`,
     description: profile.tagline,
-    type: "website",
+    type: "profile",
     url: "/",
+    siteName: profile.name,
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: `${profile.name} · ${profile.role}`,
     description: profile.tagline,
   },
+  // Set GOOGLE_SITE_VERIFICATION in Vercel to verify the Search Console property.
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({

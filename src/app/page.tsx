@@ -14,35 +14,52 @@ import {
 } from "@/lib/data";
 import { siteUrl } from "@/lib/site";
 
-const personJsonLd = {
+const personId = `${siteUrl}/#person`;
+
+const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.name,
-  jobTitle: profile.role,
-  email: profile.email,
-  url: siteUrl,
-  sameAs: [
-    profile.links.linkedin,
-    profile.links.github,
-    profile.links.scholar,
-  ],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Chicago",
-    addressRegion: "IL",
-    addressCountry: "US",
-  },
-  alumniOf: education.map((ed) => ({
-    "@type": "CollegeOrUniversity",
-    name: ed.school,
-  })),
-  knowsAbout: [
-    "Machine Learning",
-    "Large Language Models",
-    "LLM Evaluation",
-    "Retrieval-Augmented Generation",
-    "Healthcare AI",
-    "Natural Language Processing",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: `${profile.name} — ${profile.role}`,
+      inLanguage: "en-US",
+      publisher: { "@id": personId },
+      about: { "@id": personId },
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: profile.name,
+      alternateName: "Mokshit Surana",
+      jobTitle: profile.role,
+      email: profile.email,
+      url: siteUrl,
+      image: `${siteUrl}/opengraph-image`,
+      description: profile.tagline,
+      sameAs: Object.entries(profile.links)
+        .filter(([key]) => key !== "email")
+        .map(([, url]) => url),
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Chicago",
+        addressRegion: "IL",
+        addressCountry: "US",
+      },
+      alumniOf: education.map((ed) => ({
+        "@type": "CollegeOrUniversity",
+        name: ed.school,
+      })),
+      knowsAbout: [
+        "Machine Learning",
+        "Large Language Models",
+        "LLM Evaluation",
+        "Retrieval-Augmented Generation",
+        "Healthcare AI",
+        "Natural Language Processing",
+      ],
+    },
   ],
 };
 
@@ -66,7 +83,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
         }}
       />
       <Atmosphere />
@@ -83,10 +100,15 @@ export default function Home() {
           </p>
         </Reveal>
         <Reveal delay={80}>
-          <h1 className="text-6xl font-bold leading-[0.92] tracking-tight sm:text-8xl md:text-[8.5rem]">
-            {profile.name.split(" ")[0]}
-            <br />
-            <span className="text-muted">{profile.name.split(" ")[1]}</span>
+          <h1
+            aria-label={profile.name}
+            className="text-6xl font-bold leading-[0.92] tracking-tight sm:text-8xl md:text-[8.5rem]"
+          >
+            <span aria-hidden>
+              {profile.name.split(" ")[0]}
+              <br />
+              <span className="text-muted">{profile.name.split(" ")[1]}</span>
+            </span>
           </h1>
         </Reveal>
         <Reveal delay={160}>
