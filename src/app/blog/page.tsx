@@ -6,7 +6,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Writing",
-  description: `Writing by ${profile.name}: a neural-networks-from-scratch series, plus notes on other things I'm learning and thinking about.`,
+  description: `Writing by ${profile.name}: experiments, plus notes on things I'm learning and thinking about.`,
   alternates: { canonical: "/blog" },
 };
 
@@ -36,9 +36,8 @@ export default function BlogIndex() {
             Notes & essays
           </h1>
           <p className="mt-5 max-w-xl leading-relaxed text-foreground/70">
-            A mix of the technical and the personal. There&rsquo;s a series
-            that builds neural networks from scratch, and notes on other
-            things I&rsquo;m learning and thinking about along the way.
+            A mix of the technical and the personal: experiments, and notes
+            on things I&rsquo;m learning and thinking about along the way.
           </p>
         </header>
 
