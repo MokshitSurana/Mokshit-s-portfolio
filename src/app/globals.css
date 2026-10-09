@@ -239,6 +239,28 @@ h5,
   width: 100%;
   height: auto;
 }
+.post table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.post th,
+.post td {
+  padding: 0.6em 0.9em;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.post td:first-child {
+  white-space: nowrap;
+}
+.post th {
+  color: var(--foreground);
+  font-weight: 600;
+  text-align: left;
+}
 
 /* subtle grain overlay */
 .grain::before {
